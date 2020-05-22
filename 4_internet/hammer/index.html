@@ -1,0 +1,2613 @@
+<!DOCTYPE html>
+
+<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!-- the "no-js" class is for Modernizr. -->
+
+<head>
+    <link type="text/plain" rel="author" href="/humans.txt" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Erlang Solutions</title>
+
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/design/favicon-13104a1a076cb868e2103d4161b6b208d7957897d5d58cc2e9d317116b624263.ico" />
+
+    <link rel="stylesheet" media="all" href="/assets/designs/design-ad7b2dcbd35413c3f8717bc51058ca7505610986521c52b900976c653ec5c102.css" />
+
+    <!-- CSS libraries -->
+    <link rel="alternate" type="application/atom+xml" title="Blog RSS" href="/news.rss" />
+    <link rel="alternate" type="application/atom+xml" title="MongooseIM Blog RSS" href="/mongoose_news.rss" />
+    <script>
+var debug = true;
+var CookieConsent = 'CookieConsent';
+
+function log(msg1, msg2) {
+  if(!debug) { return; }
+  if(typeof msg2 === 'undefined') {
+    console.log(msg1);
+    return;
+  }
+  console.log(msg1, msg2);
+}
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function isTrackingAllowed() {
+  var c = getCookie(CookieConsent);
+  return '' === c || '1' === c;
+}
+
+function async_pardot_load() {
+  log('async_pardot_load');
+  var s = document.createElement('script'); s.type = 'text/javascript';
+  s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+  var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+}
+
+function pardotTracking() {
+  log('pardotTracking on');
+  if(window.attachEvent) { window.attachEvent('onload', async_pardot_load); }
+  else { window.addEventListener('load', async_pardot_load, false); }
+}
+</script>
+
+    
+
+    <!-- Google Tag Manager -->
+<script>
+function googleTagManager() {
+log('googleTagManager tracking on');
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KTN9QLQ');
+}
+if(isTrackingAllowed()) { googleTagManager(); }
+</script>
+<!-- End Google Tag Manager -->
+
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTN9QLQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<header>
+  <div class="container">
+    <h1 class="logo">
+      <a href="/home.html"><img alt="Erlang" srcset="/assets/design/logo@2x-903c3dc0dbe25c7806bc5586eba5dc819899690a95429e543136c0a435a1d915.png 2x" src="/assets/design/logo-b052c1ffbdcc48507569f7e4669a064c2d0761823991ce52423ef46c3e7ab3ab.png" /></a>
+    </h1>
+    <div class="menu-toggler">
+      <span class="before"></span>
+      <span class="main">Menu</span>
+      <span class="after"></span>
+    </div>
+    <div class="controls">
+      <form action="/search-results.html" class="search">
+        <input name="q" type="text">
+        <button class="gray-btn circle-btn">
+          <i class="icon-erlang-magnify"></i>
+        </button>
+      </form>
+      <a class="btn download" href="/resources/download.html">
+        <span>Download</span><i class="icon-erlang-download"></i>
+      </a>
+    </div>
+    <ul class="menu">
+          <li class="submenu"><a href="/products.html">Products</a>
+            <ul>
+                <li><a href="/products/rabbitmq.html">RabbitMQ</a></li>
+                <li><a href="/products/emq.html">EMQ</a></li>
+                <li><a href="/products/mongooseim.html">MongooseIM</a></li>
+                <li><a href="/products/wombatoam.html">WombatOAM</a></li>
+                <li><a href="/products/riak.html">Riak</a></li>
+            </ul>
+          </li>
+          <li class="submenu"><a href="/solutions.html">Solutions</a>
+            <ul>
+                <li><a href="/solutions/consulting.html">Consulting</a></li>
+                <li><a href="/solutions/development.html">Development</a></li>
+                <li><a href="/solutions/elixir-development.html">Elixir Development</a></li>
+                <li><a href="/solutions/support.html">Support</a></li>
+            </ul>
+          </li>
+          <li class="submenu"><a href="/industries.html">Industries</a>
+            <ul>
+                <li><a href="/industries/finance.html">Finance</a></li>
+                <li><a href="/industries/online-gambling-betting.html">Online Gambling &amp; Betting</a></li>
+                <li><a href="/industries/telecoms.html">Telecoms</a></li>
+                <li><a href="/industries/gaming.html">Gaming</a></li>
+                <li><a href="/industries/advertising-media.html">Advertising &amp; Media</a></li>
+                <li><a href="/industries/messaging-social.html">Messaging &amp; Social</a></li>
+            </ul>
+          </li>
+          <li class="submenu"><a href="/training.html">Training</a>
+            <ul>
+                <li><a href="/training/online-training.html">Online Training</a></li>
+                <li><a href="/training/all-online-courses.html">All Online Courses</a></li>
+                <li><a href="/training/corporate-training.html">Corporate Training</a></li>
+                <li><a href="/training/certification.html">Certification</a></li>
+            </ul>
+          </li>
+          <li><a href="/events.html">Events</a></li>
+          <li class="submenu"><a href="/resources.html">Resources</a>
+            <ul>
+                <li><a href="/resources/download.html">Download</a></li>
+                <li><a href="/resources/my-topdog-status.html">My Topdog Status</a></li>
+                <li><a href="/resources/case-studies.html">Case Studies</a></li>
+                <li><a href="/resources/brochures.html">Brochures</a></li>
+                <li><a href="/resources/webinars.html">Webinars</a></li>
+                <li><a href="/resources/open-erlang.html">Open Erlang</a></li>
+                <li><a href="/resources/covid-19-policy.html">COVID-19 Policy</a></li>
+            </ul>
+          </li>
+          <li class="submenu"><a href="/careers.html">Careers</a>
+            <ul>
+                <li><a href="/careers.html#people">People</a></li>
+                <li><a href="/careers/careers.html">Careers</a></li>
+            </ul>
+          </li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+    </ul>
+  </div>
+</header>
+
+
+
+<section class="product">
+  <div class="container">
+    <div class="section-description">
+        <div class="icon"><i class="icon-erlang-download"></i></div>
+      <h2>Download Erlang Packages</h2>
+
+<p>Hey, we are currently working on this page to make all packages easily downloadable to you on desktop;&nbsp;in the meantime you can contact us directly at <a href="mailto:general@erlang-solutions.com?subject=Download%20Enquiry">general@erlang-solutions.com</a>&nbsp;with any questions, or <a href="https://www2.erlang-solutions.com/update-your-subscription">subscribe to</a> our Erlang &amp; Elixir Newsletter.</p>
+
+<p>Installation and dependency resolution is straight-forward with our standard Erlang/OTP and Elixir download packages. In the event of installation issues, we offer support for both Erlang and Elixir and we include the standardised Erlang/OTP testing results. You can also benefit from Enterprise packages that mean you can research commonly used modules that aren't part of Erlang/OTP. Our downloads total around 25000 every month.&nbsp;MongooseIM, the XMPP platform for building high-performance instant messaging systems is also available. Getting started with MongooseIM is easy – download it here and you can be up and running in minutes.</p>
+
+<p>Want something great to read while you're waiting for the download to finish? Check out our summary of the best Erlang stories in 2019.</p>
+
+    </div>
+  </div>
+</section>
+
+
+<p style="text-align:center"><img src="https://i.imgur.com/pRiq0Bl.jpg" style="width:600px"></p>
+<br>
+<br>
+<br>
+
+
+
+<section class='button-widget'>
+<div class='btn-container container'>
+<a class="btn btn-primary-bg" target="_self" href="https://www.erlang-solutions.com/blog/erlang-highlights-2019-best-of-the-beam.html">Discover the Erlang Highlights of 2019</a>
+</div>
+</section>
+
+
+<section class="download-section container">
+  <div class="grid filters">
+    <div class="product-filter row">
+      <div>
+        <a href="#" data-product="erlang" class="btn rect-btn big">Erlang OTP</a>
+      </div>
+      <div>
+        <a href="#" data-product="mongoose" class="btn rect-btn big">MongooseIM</a>
+      </div>
+      <div>
+        <a href="#" data-product="elixir" class="btn rect-btn big">Elixir</a>
+      </div>
+      <div>
+        <a href="#" data-product="riak" class="btn rect-btn big">Riak</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- START OF ERLANG CONTENT -->
+
+  <div id="erlang-otp-download" class="product-info">
+    <div class="filters clear">
+      <div class="system-filter">
+        <ul class="clear">
+        </ul>
+        <div class="mobile-filter clear">
+          <p>Select system:</p>
+          <div class="custom-native-select">
+            <a href="#">Ubuntu</a>
+          </div>
+        </div>
+      </div>
+
+    <div class="product-header">
+    </div>
+      <div class="edition-filter">
+      </div>
+    </div>
+
+    <div class="content active product-details">
+      <div class="grid margin-100">
+        <div class="col-6 product-description">
+        </div>
+        <div class="col-6 download">
+          <div class="custom-list-select">
+          </div>
+        </div>
+      </div>
+      <div class="versions">
+        <h3></h3>
+        <div class="tabs-list">
+        </div>
+      </div>
+    </div>
+    <div class="product-instruction">
+    </div>
+
+  </div>
+  <!-- END OF ERLANG INFO -->
+</section>
+
+
+    <section class="careers">
+      <div class="container">
+        <div class="section-description">
+          <div class="big-image"
+               style="background-image: url(https://esl-web-static.s3.amazonaws.com/uploads/image/file/88/download_main_page_-_big_photo.jpg);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<footer>
+  <div id="form1585" class="container">
+  <div class="newsletter">
+    <h2>Get our Newsletter </h2>
+    <form autocomplete="on"
+          action="/forms/submit"
+          method="post"
+          data-href="form1585"
+          data-handler="https://go.pardot.com/l/23452/2015-08-31/2zxhs5"
+          data-thank-you-page-id="1"
+          class="custom-form">
+      <input type="hidden" name="form_id" id="form_id" value="1" />
+      <input autocomplete="email" placeholder="Enter your e-mail address" name="email" type="email" required>
+      <div style="position:absolute; left:-9999px; top: -9999px;">
+        <label>name <input tabindex="-1" type="text" name="pardot_extra_field"></label>
+      </div>
+      <input value="Subscribe" type="submit">
+    </form>
+  </div>
+</div>
+<section class="social-bar">
+  <h2 class="sr-only">Social bar</h2>
+  <div class="container">
+    <a href="https://twitter.com/erlangsolutions" target="_blank" class="twitter"><i class="icon-erlang-twitter"></i></a>
+    <a href="https://www.linkedin.com/company/207788" target="_blank" class="linkedin"><i class="icon-erlang-linkedin"></i></a>
+    <a href="https://www.facebook.com/ErlangSolutions" target="_blank" class="facebook"><i class="icon-erlang-facebook"></i></a>
+    <a href="https://www.youtube.com/user/ErlangSolutions" target="_blank" class="youtube"><i class="icon-erlang-youtube"></i></a>
+    <a href="https://github.com/esl" target="_blank" class="github"><i class="icon-erlang-github"></i></a>
+    <a href="/resources/download.html" class="download"><i class="icon-erlang-download"></i></a>
+    <a href="/news.rss" target="_blank" class="rss"><i class="icon-erlang-rss"></i></a>
+    <a href="mailto:general@erlang-solutions.com" class="mail"><i class="icon-erlang-mail"></i></a>
+  </div>
+</section>
+<!-- CONTACT SECTION -->
+<section class="contact-section">
+  <div class="container">
+    <div class="copy">
+      <h2>Get in touch</h2>
+
+<p><br />
+Contact us right now to learn more or to ask your question; we are happy to help!&nbsp;<br />
+<br />
+We are over 100 specialists working from London, Stockholm, Krakow, Budapest, San Francisco and Seattle.<br />
+<br />
+<a href="https://www.erlang-solutions.com/contact.html">Our location &gt;</a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:11px"><em>Erlang Solutions cares about your data and privacy. By submitting this form you agree that your data will be processed according to our <a href="https://www.erlang-solutions.com/privacy-policy.html">Privacy Policy</a>. Update your Marketing email preferences <a href="http://www2.erlang-solutions.com/emailpreference" target="_blank">here</a>.</em></span></p>
+
+    </div>
+    <iframe src="//go.pardot.com/l/23452/2017-01-18/4g14yj" type="text/html" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+</section>
+    <div class="container">
+      <div class="menu">
+        
+          
+          
+          
+            <div class="category products">
+              <h3><a href="/products.html">Products</a></h3>
+              <ul>
+                
+                  
+                    <li><a href="/products/rabbitmq.html">RabbitMQ</a></li>
+                  
+                
+                  
+                    <li><a href="/products/emq.html">EMQ</a></li>
+                  
+                
+                  
+                    <li><a href="/products/mongooseim.html">MongooseIM</a></li>
+                  
+                
+                  
+                    <li><a href="/products/wombatoam.html">WombatOAM</a></li>
+                  
+                
+                  
+                    <li><a href="/products/riak.html">Riak</a></li>
+                  
+                
+                  
+                
+              </ul>
+            </div>
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+            <div class="category solutions">
+              <h3><a href="/solutions.html">Solutions</a></h3>
+              <ul>
+                
+                  
+                    <li><a href="/solutions/consulting.html">Consulting</a></li>
+                  
+                
+                  
+                    <li><a href="/solutions/development.html">Development</a></li>
+                  
+                
+                  
+                    <li><a href="/solutions/elixir-development.html">Elixir Development</a></li>
+                  
+                
+                  
+                    <li><a href="/solutions/support.html">Support</a></li>
+                  
+                
+              </ul>
+            </div>
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+            <div class="category industries">
+              <h3><a href="/industries.html">Industries</a></h3>
+              <ul>
+                
+                  
+                    <li><a href="/industries/finance.html">Finance</a></li>
+                  
+                
+                  
+                    <li><a href="/industries/online-gambling-betting.html">Online Gambling & Betting</a></li>
+                  
+                
+                  
+                    <li><a href="/industries/telecoms.html">Telecoms</a></li>
+                  
+                
+                  
+                    <li><a href="/industries/gaming.html">Gaming</a></li>
+                  
+                
+                  
+                    <li><a href="/industries/advertising-media.html">Advertising & Media</a></li>
+                  
+                
+                  
+                    <li><a href="/industries/messaging-social.html">Messaging & Social</a></li>
+                  
+                
+              </ul>
+            </div>
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+            <div class="category training">
+              <h3><a href="/training.html">Training</a></h3>
+              <ul>
+                
+                  
+                    <li><a href="/training/online-training.html">Online Training</a></li>
+                  
+                
+                  
+                    <li><a href="/training/all-online-courses.html">All Online Courses</a></li>
+                  
+                
+                  
+                    <li><a href="/training/corporate-training.html">Corporate Training</a></li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                    <li><a href="/training/certification.html">Certification</a></li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+            </div>
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+            <div class="category resources">
+              <h3><a href="/resources.html">Resources</a></h3>
+              <ul>
+                
+                  
+                    <li><a href="/resources/download.html">Download</a></li>
+                  
+                
+                  
+                    <li><a href="/resources/my-topdog-status.html">My Topdog Status</a></li>
+                  
+                
+                  
+                    <li><a href="/resources/case-studies.html">Case Studies</a></li>
+                  
+                
+                  
+                    <li><a href="/resources/brochures.html">Brochures</a></li>
+                  
+                
+                  
+                    <li><a href="/resources/webinars.html">Webinars</a></li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                    <li><a href="/resources/open-erlang.html">Open Erlang</a></li>
+                  
+                
+                  
+                    <li><a href="/resources/covid-19-policy.html">COVID-19 Policy</a></li>
+                  
+                
+              </ul>
+            </div>
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+            <div class="category about">
+              <h3><a href="/careers.html">Careers</a></h3>
+              <ul>
+                
+                  
+                    <li><a href="/careers/careers.html">Careers</a></li>
+                  
+                
+                  
+                
+              </ul>
+            </div>
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+        <div class="category">
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+              <h3><a href="/events.html">Events</a></h3>
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+              <h3><a href="/contact.html">Contact</a></h3>
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+              <h3><a href="/blog.html">Blog</a></h3>
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+            
+            
+            
+          
+        </div>
+      </div>
+    </div>
+
+<div class="container">
+  <div class="copyrights">
+    © All rights reserved 2020 Erlang Solutions Ltd<br />Part of Trifork Group | 
+    <span>
+      <a href="/terms-of-use.html">Terms of Use</a> | <a href="/privacy-policy.html">Privacy Policy</a> | <a href="/privacy-policy-candidates.html">Candidate Privacy Policy</a> | <a href="/cookie-policy.html">Cookie Policy </a>
+    </span>
+  </div>
+</div>
+
+  <section id="cookie-banner" class="cookiealert" style="display:none">
+  <div class="container">
+    <div class="cookiealert-text">
+      <p>Erlang Solutions uses cookies to improve and personalise your experience. The site may also include cookies from third parties. By using this site you consent to the use of cookies.</p>
+    </div>
+    <div class="cookiealert-links">
+      <a class="cookiealert-policy" href="/cookie-policy.html">Cookie policy</a>
+      <a class="btn cookiealert-agree" href="#" id="btn-cookie-agree">GOT IT</a>
+      <a class="cookiealert-close btn" href="#" id="btn-cookie-disagree">&times;</a>
+    </div>
+  </div>
+</section>
+
+</footer>
+
+
+
+
+<div id="thanks-request-info" class="thanks-modal md-modal">
+  <div class="md-close">&times;</div>
+  <div class="md-centered md-content md-effect ps-container ps-active-y">
+    <div class="section-description">
+      <div class="icon"><i class="icon-erlang-ask"></i></div>
+      <div id="default-thank-you-message">
+        <h3>Thank you for your message</h3>
+        We sent you a confirmation email to let you know we received it. One of
+        our colleagues will get in touch shortly.<br>
+        Have a nice day!
+      </div>
+      <div id="custom-thank-you-message">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="md-overlay"></div>
+<iframe id="pardot-contact-form-handler" height="0" width="0"></iframe>
+<iframe id="form-tracker" height="0" width="0"></iframe>
+
+<!-- here comes the javascript -->
+<script src="/assets/public-83a17be9ec34aa8847976572f138032f44ff36097cf6f2ffbb922bcbc5a8d9cb.js"></script>
+
+<!-- JS libraries -->
+<script type="text/javascript">
+    piAId = '24452';
+    piCId = '1476';
+
+    (function() {
+        if(isTrackingAllowed()) {
+            pardotTracking();
+        }
+    })();
+</script>
+
+<!-- Custom Scripts -->
+
+</body>
+</html>
